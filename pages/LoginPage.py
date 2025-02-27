@@ -2,19 +2,42 @@ from pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
 
 class LoginPageLocators:
-    SECTION_LOGIN_BUTTON = (By.XPATH, '// *[ @ id = "login-6156265006"]')
-    SECTION_LOGIN_BY_QR_BUTTON = (By.XPATH, '//*[@id="qrCode-6156265068"]')
+    LOGIN_TAB = (By.XPATH, '//*[@data-l="t,login_tab"]')
+    QR_TAB = (By.XPATH, '//*[@data-l="t,qr_tab"]')
     LOGIN_FIELD = (By.ID, 'field_email')
     PASSWORD_FIELD = (By.ID, 'field_password')
     LOGIN_BUTTON = (By.XPATH, '//*[@data-l="t,sign_in"]')
     LOGIN_BY_QR_BUTTON = (By.XPATH, '//*[@data-l="t,get_qr"]')
-    CANT_LOGIN_BUTTON = (By.XPATH, '//*[@id="tabpanel-login-6156265006"]/form/div[4]/div[1]/a')
-    REGISTER_BUTTON = (By.XPATH, '//*[@id="tabpanel-login-6156265006"]/form/div[4]/div[2]/a')
-    LOGIN_BY_VK_BUTTON = (By.XPATH, '//*[@id="tabpanel-login-6156265006"]/form/div[4]/div[2]/div[2]/a[1]/i')
-    LOGIN_BY_MAIL_RU_BUTTON = (By.XPATH, '//*[@id="tabpanel-login-6156265006"]/form/div[4]/div[2]/div[2]/a[2]/i')
-    LOGIN_BY_GOOGLE_BUTTON = (By.XPATH, '//*[@id="tabpanel-login-6156265006"]/form/div[4]/div[2]/div[2]/a[3]/i')
-    LOGIN_BY_YANDEX_BUTTON = (By.XPATH, '//*[@id="tabpanel-login-6156265006"]/form/div[4]/div[2]/div[2]/a[4]/i')
-    LOGIN_BY_APPLE_BUTTON = (By.XPATH, '//*[@id="tabpanel-login-6156265006"]/form/div[4]/div[2]/div[2]/a[5]/i')
+    RESTORE_LINK = (By.XPATH, '//*[@data-l="t,restore"]')
+    REGISTRATION_BUTTON = (By.XPATH, '//div[@class="external-oauth-login-footer"]/a[@data-l="t,register"]')
+    VK_BUTTON = (By.XPATH, '//*[@data-l="t,vkc"]')
+    MAIL_RU_BUTTON = (By.XPATH, '//*[@data-l="t,mailru"]')
+    YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
+    ERROR_TEXT = (By.XPATH, '//*[@class="input-e login_error"]')
 
 class LoginPageHelper(BasePage):
-    pass
+    def __init__(self, driver):
+        self.driver = driver
+        self.check_page()
+
+    def check_page(self):
+        self.find_element(LoginPageLocators.LOGIN_TAB)
+        self.find_element(LoginPageLocators.QR_TAB)
+        self.find_element(LoginPageLocators.LOGIN_FIELD)
+        self.find_element(LoginPageLocators.PASSWORD_FIELD)
+        self.find_element(LoginPageLocators.LOGIN_BUTTON)
+        self.find_element(LoginPageLocators.LOGIN_BY_QR_BUTTON)
+        self.find_element(LoginPageLocators.RESTORE_LINK)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON)
+        self.find_element(LoginPageLocators.VK_BUTTON)
+        self.find_element(LoginPageLocators.MAIL_RU_BUTTON)
+        self.find_element(LoginPageLocators.YANDEX_BUTTON)
+
+    def click_login(self):
+        self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
+
+    def input_text_in_login_field(self, text):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(text)
+
+    def get_error_text(self):
+        return self.find_element(LoginPageLocators.ERROR_TEXT).text
