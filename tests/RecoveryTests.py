@@ -4,6 +4,7 @@ from pages.BasePage import BasePage
 from pages.LoginPage import LoginPageHelper
 from pages.RecoveryPage import RecoveryPageHelper
 
+
 BASE_URL = 'https://ok.ru/'
 LOGIN_TEXT = 'email'
 PASSWORD_TEXT = '1'

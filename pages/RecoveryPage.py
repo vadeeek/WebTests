@@ -2,6 +2,7 @@ import allure
 from pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
 
+
 class RecoveryPageLocators:
     PHONE_BUTTON = (By.XPATH, '//*[@data-l="t,phone"]')
     EMAIL_BUTTON = (By.XPATH, '//*[@data-l="t,email"]')

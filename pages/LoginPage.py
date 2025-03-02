@@ -2,6 +2,7 @@ import allure
 from pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
 
+
 class LoginPageLocators:
     LOGIN_TAB = (By.XPATH, '//*[@data-l="t,login_tab"]')
     QR_TAB = (By.XPATH, '//*[@data-l="t,qr_tab"]')
@@ -18,6 +19,7 @@ class LoginPageLocators:
     GO_BACK_BUTTON = (By.XPATH, '//*[@data-l="t,cancel"]')
     SUPPORT_BUTTON = (By.XPATH, '//*[@class="external-oauth-login-help portlet_f"]')
     PROFILE_RECOVERY_BUTTON = (By.NAME, 'st.go_to_recovery')
+
 
 class LoginPageHelper(BasePage):
     def __init__(self, driver):
@@ -58,6 +60,11 @@ class LoginPageHelper(BasePage):
     def click_recovery(self):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.PROFILE_RECOVERY_BUTTON).click()
+
+    @allure.step('Переходим к регистрации')
+    def click_registration(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON).click()
 
     @allure.step('Получаем текст ошибки')
     def get_error_text(self):
