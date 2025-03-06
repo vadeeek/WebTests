@@ -3,6 +3,7 @@ from core.BaseTest import browser
 from pages.BasePage import BasePage
 from pages.LoginPage import LoginPageHelper
 
+
 BASE_URL = 'https://ok.ru/'
 EMPTY_LOGIN_ERROR = 'Введите логин'
 EMPTY_PASSWORD_ERROR = 'Введите пароль'
