@@ -38,6 +38,7 @@ class BasePageHelper:
     @allure.step('Нажимаем кнопку экосистемы')
     def click_vk_ecosystem(self):
         self.find_element(BasePageLocators.VK_ECOSYSTEM_BUTTON).click()
+        self.attach_screenshot()
 
     @allure.step('Нажимаем кнопку "Ещё"')
     def click_more_button(self):
